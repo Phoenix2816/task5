@@ -1,6 +1,5 @@
-import React, {useState} from "react";
+import React from "react";
 import ReactTimeAgo from "react-time-ago";
-import en from 'javascript-time-ago/locale/en';
 
 
 const User = ({
