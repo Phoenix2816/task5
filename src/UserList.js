@@ -22,7 +22,7 @@ const UserList = () => {
             direction: "desc"
         });
 
-    const refreshUsers = async () => {
+    const refreshUsers = useCallback(async () => {
         try {
 
             const response =
@@ -43,7 +43,7 @@ const UserList = () => {
             );
 
         }
-    };
+    }, []);
 
     useEffect(() => {
 
