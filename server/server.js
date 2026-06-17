@@ -373,10 +373,6 @@ async function startServer() {
             }
         });
 
-        // START SERVER 
-        app.listen(process.env.PORT, () => {
-            console.log(`Server running on port ${process.env.PORT}`);
-        });
 
     } catch (err) {
         console.error("DB connection failed:", err);
@@ -384,3 +380,4 @@ async function startServer() {
 }
 
 startServer();
+module.exports = app;
