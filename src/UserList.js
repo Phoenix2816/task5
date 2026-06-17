@@ -67,7 +67,7 @@ const UserList = () => {
 
         };
 
-    }, []);
+    }, [refreshUsers]);
 
     const select = () => {
 
