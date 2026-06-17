@@ -6,10 +6,10 @@ const mysql = require("mysql2/promise");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
+const path = require("path");
 const app = express();
 const { v4: uuidv4 } = require("uuid");
 const emailjs = require("@emailjs/nodejs");
-const path = require("path");
 const authMiddleware = async (req, res, next) => {
     try {
         const authHeader = req.headers.authorization;
