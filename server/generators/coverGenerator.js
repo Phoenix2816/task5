@@ -789,48 +789,31 @@ function photoCollageCover(title, artist, rng) {
     `);
 }
 
+function wrapCover(bg, subject, title, artist, rng) {
+    return svgWrap(`
+        ${bg(rng)}
+        ${subject(rng)}
+        ${label(title, artist)}
+    `);
+}
+
 function generateCover(title, artist, rng) {
     const styles = [
-        vinylCover,
-        equalizerCover,
-        sunsetCover,
-        mountainCover,
-        waveCover,
-        cityCover,
-        neonGridCover,
-        retroCover,
-
-        synthwaveCover,
-        geometricPosterCover,
-        planetCover,
-        tunnelCover,
-        cassetteCover,
-        radialBurstCover,
-        blueprintCover,
-        circuitBoardCover,
-        topographicCover,
-        stainedGlassCover,
-        skylineSunsetCover,
-        mosaicCover,
-        photoCollageCover
+        (t, a, r) => wrapCover(sunsetBackground, vinylSubject, t, a, r),
+        (t, a, r) => wrapCover(spaceBackground, equalizerSubject, t, a, r),
+        (t, a, r) => wrapCover(cityBackground, skylineSubject, t, a, r),
+        (t, a, r) => wrapCover(mountainBackground, geometricSubject, t, a, r),
+        (t, a, r) => wrapCover(auroraBackground, ringsSubject, t, a, r),
+        (t, a, r) => wrapCover(neonGridBackground, waveformSubject, t, a, r),
+        (t, a, r) => wrapCover(paperBackground, cassetteSubject, t, a, r),
+        (t, a, r) => wrapCover(synthwaveBackground, sunSubject, t, a, r)
     ];
 
-    const style =
-        styles[
-            Math.floor(
-                rng() * styles.length
-            )
-        ];
+    const style = styles[Math.floor(rng() * styles.length)];
 
-    const svg = style(
-        title,
-        artist,
-        rng
-    );
+    const svg = style(title, artist, rng);
 
-    return Buffer
-        .from(svg)
-        .toString("base64");
+    return Buffer.from(svg).toString("base64");
 }
 
 module.exports = {
