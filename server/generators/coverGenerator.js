@@ -799,14 +799,21 @@ function wrapCover(bg, subject, title, artist, rng) {
 
 function generateCover(title, artist, rng) {
     const styles = [
+        (t, a, r) => wrapCover(gradientBackground, geometricSubject, t, a, r),
         (t, a, r) => wrapCover(sunsetBackground, vinylSubject, t, a, r),
-        (t, a, r) => wrapCover(spaceBackground, equalizerSubject, t, a, r),
+        (t, a, r) => wrapCover(synthwaveBackground, waveformSubject, t, a, r),
         (t, a, r) => wrapCover(cityBackground, skylineSubject, t, a, r),
-        (t, a, r) => wrapCover(mountainBackground, geometricSubject, t, a, r),
-        (t, a, r) => wrapCover(auroraBackground, ringsSubject, t, a, r),
-        (t, a, r) => wrapCover(neonGridBackground, waveformSubject, t, a, r),
+        (t, a, r) => wrapCover(mountainBackground, crystalSubject, t, a, r),
+        (t, a, r) => wrapCover(spaceBackground, ringsSubject, t, a, r),
+        (t, a, r) => wrapCover(auroraBackground, sunSubject, t, a, r),
+        (t, a, r) => wrapCover(neonGridBackground, equalizerSubject, t, a, r),
         (t, a, r) => wrapCover(paperBackground, cassetteSubject, t, a, r),
-        (t, a, r) => wrapCover(synthwaveBackground, sunSubject, t, a, r)
+        (t, a, r) => wrapCover(retroBackground, vinylSubject, t, a, r),
+        (t, a, r) => wrapCover(gradientBackground, cdSubject, t, a, r),
+        (t, a, r) => wrapCover(sunsetBackground, crystalSubject, t, a, r),
+        (t, a, r) => wrapCover(spaceBackground, geometricSubject, t, a, r),
+        (t, a, r) => wrapCover(cityBackground, waveformSubject, t, a, r),
+        (t, a, r) => wrapCover(mountainBackground, ringsSubject, t, a, r)
     ];
 
     const style = styles[Math.floor(rng() * styles.length)];
@@ -815,7 +822,6 @@ function generateCover(title, artist, rng) {
 
     return Buffer.from(svg).toString("base64");
 }
-
 module.exports = {
     generateCover
 };
