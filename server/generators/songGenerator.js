@@ -26,20 +26,20 @@ function makeMelody(rng) {
     const scale = ["C", "D", "Eb", "F", "G", "Ab", "Bb"];
     const oct = [3, 4, 5];
 
+    const motif = makeMotif(rng, scale, 4);
     const melody = [];
-
-    let noteIndex = Math.floor(rng() * scale.length);
 
     for (let bar = 0; bar < 4; bar++) {
         const phrase = [];
 
         for (let i = 0; i < 4; i++) {
-            
-            const move = rng();
+            let noteIndex;
 
-            if (move < 0.4) noteIndex += 1;
-            else if (move < 0.7) noteIndex -= 1;
-            else noteIndex += 2;
+            if (bar === 0 || bar === 2) {
+                noteIndex = motif[i];
+            } else {
+                noteIndex = motif[i] + (rng() > 0.5 ? 1 : -1);
+            }
 
             noteIndex = (noteIndex + scale.length) % scale.length;
 
