@@ -19,9 +19,27 @@ function rand(rng, arr) {
     return arr[Math.floor(rng() * arr.length)];
 }
 
-const SCALE = ["C", "D", "Eb", "F", "G", "Ab", "Bb"];
-const OCT = [3, 4, 5];
+function makeMotif(rng, scale, length = 4) {
+    const motif = [];
+    let note = Math.floor(rng() * scale.length);
 
+    for (let i = 0; i < length; i++) {
+        const move = rng();
+
+        if (move < 0.6) {
+            note += 1;
+        } else if (move < 0.85) {
+            note -= 1;
+        } else {
+            note += 2;
+        }
+
+        note = (note + scale.length) % scale.length;
+        motif.push(note);
+    }
+
+    return motif;
+}
 function makeMelody(rng) {
     const scale = ["C", "D", "Eb", "F", "G", "Ab", "Bb"];
     const oct = [3, 4, 5];
@@ -173,9 +191,6 @@ function generateReview(rng, genre, localeData) {
 
     return SentencerLocal.make(pattern);
 }
-function pick(rng, arr) {
-    return arr[Math.floor(rng() * arr.length)];
-}
 function generateReaction(rng, localeData) {
     const pattern = rand(
         rng,
@@ -227,17 +242,11 @@ function generateSong(index, rng, region, seed, page) {
             ? `${randomItem(adjectives)} ${randomItem(nouns)}`
             : localeData.single || "Single";
 
-    const template = randomItem(
-        localeData.reviewPatterns || [
-            "{{adjective}} {{noun}} {{reaction}}"
-        ]
+    const review = generateReview(
+        songRng,
+        genre,
+        localeData
     );
-
-    const review = template
-        .replace(/{{adjective}}/g, randomItem(adjectives))
-        .replace(/{{noun}}/g, randomItem(nouns))
-        .replace(/{{reaction}}/g, generateReaction(songRng, localeData))
-        .replace(/{{genre}}/g, genre);
     return {
         id: index,
         title,
@@ -248,7 +257,7 @@ function generateSong(index, rng, region, seed, page) {
         tempo: 70 + Math.floor(songRng() * 70),
         melody: makeMelody(songRng),
         bass: makeBass(songRng),
-        drums: makeDrums(songRng)
+        drums: makeDrums(songRng, genre)
     };
 }
 
