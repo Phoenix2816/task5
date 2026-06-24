@@ -1,0 +1,18 @@
+{
+  "ui": {
+    "discoverMusic": "Discover Music",
+    "browseDescription": "Browse generated songs and albums",
+    "loading": "Loading more songs...",
+    "tableView": "Table View",
+    "galleryView": "Gallery View",
+    "previous": "← Previous",
+    "next": "Next →"
+  },
+  "languages": {
+    "en-US": "English (US)",
+    "de-DE": "German (Germany)",
+    "uk-UA": "Ukrainian",
+    "fr-FR": "French",
+    "es-ES": "Spanish"
+  }
+}

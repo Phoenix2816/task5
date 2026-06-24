@@ -1,0 +1,90 @@
+{
+  "single": "Single",
+  "genres": [
+    "Rock",
+    "Pop",
+    "Jazz",
+    "Hip-Hop",
+    "Elektronisch",
+    "Indie",
+    "Klassik"
+  ],
+  "titlePattern": "{{adjective}} {{noun}}",
+  "reviewPatterns": [
+    "Eine {{adjective}} {{noun}}, die {{reaction}}.",
+    "Auf einer {{adjective}} Grundlage von {{noun}} aufgebaut, {{reaction}}.",
+    "Der Song erkundet eine {{adjective}} Atmosphäre, in der {{noun}} dominiert.",
+    "Eine {{adjective}} Interpretation von {{noun}} im {{genre}}.",
+    "Mit einem {{adjective}} Gefühl von {{noun}} {{reaction}}.",
+    "Ein unerwartet {{adjective}}es Stück {{noun}}-getriebener Komposition."
+  ],
+    "adjectives": [
+      "lebendig",
+      "melancholisch",
+      "elektrisch",
+      "träumerisch",
+      "roh",
+      "kinematisch",
+      "minimal",
+      "experimentell",
+      "aufbauend",
+      "dunkel",
+      "nostalgisch",
+      "hypnotisch"
+    ],
+    "nouns": [
+      "Melodie",
+      "Rhythmus",
+      "Harmonie",
+      "Echo",
+      "Impuls",
+      "Welle",
+      "Sturm",
+      "Feuer",
+      "Schatten",
+      "Himmel",
+      "Traum",
+      "Signal"
+    ],
+    "reactionPatterns": [
+    "{{verb}} {{object}} mit {{quality}}",
+    "{{verb}} ein Gefühl von {{quality}}",
+    "{{verb}} die Hörer durch {{object}}",
+    "{{verb}} ein bemerkenswert {{quality}}es Erlebnis",
+    "{{verb}} musikalische {{object}} durchgehend",
+    "{{verb}} eine Atmosphäre von {{quality}}"
+    ],
+
+    "verbs": [
+    "erzeugt",
+    "liefert",
+    "entwickelt",
+    "bewahrt",
+    "fängt",
+    "weckt",
+    "formt",
+    "schafft"
+    ],
+
+    "objects": [
+    "Emotion",
+    "Energie",
+    "Tiefe",
+    "Dynamik",
+    "Spannung",
+    "Kontrast",
+    "Begeisterung",
+    "Atmosphäre"
+    ],
+
+    "qualities": [
+    "Klarheit",
+    "Intensität",
+    "Wärme",
+    "Balance",
+    "Originalität",
+    "Präzision",
+    "Fülle",
+    "Charakter"
+    ]
+  }

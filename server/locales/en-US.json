@@ -1,0 +1,91 @@
+{
+  "single": "Single",
+  "genres": [
+    "Rock",
+    "Pop",
+    "Jazz",
+    "Hip-Hop",
+    "Electronic",
+    "Indie",
+    "Classical"
+  ],
+  "titlePattern": "{{adjective}} {{noun}}",
+  "reviewPatterns": [
+    "A {{adjective}} {{noun}} that {{reaction}}.",
+    "Built on a {{adjective}} foundation of {{noun}}, the track {{reaction}}.",
+    "The song explores a {{adjective}} atmosphere where {{noun}} dominates.",
+    "A {{adjective}} interpretation of {{noun}} within {{genre}} music.",
+    "With a {{adjective}} sense of {{noun}}, it {{reaction}}.",
+    "An unexpectedly {{adjective}} piece of {{noun}}-driven composition."
+  ],
+    "adjectives": [
+      "vibrant",
+      "melancholic",
+      "electric",
+      "dreamy",
+      "raw",
+      "cinematic",
+      "minimal",
+      "experimental",
+      "uplifting",
+      "dark",
+      "nostalgic",
+      "hypnotic"
+    ],
+    "nouns": [
+      "melody",
+      "rhythm",
+      "harmony",
+      "echo",
+      "pulse",
+      "wave",
+      "storm",
+      "fire",
+      "shadow",
+      "sky",
+      "dream",
+      "signal"
+    ],
+    
+    "reactionPatterns": [
+    "{{verb}} {{object}} with {{quality}}",
+    "{{verb}} a sense of {{quality}}",
+    "{{verb}} listeners through {{object}}",
+    "{{verb}} a remarkably {{quality}} experience",
+    "{{verb}} musical {{object}} throughout",
+    "{{verb}} an atmosphere of {{quality}}"
+    ],
+
+    "verbs": [
+    "creates",
+    "delivers",
+    "builds",
+    "maintains",
+    "captures",
+    "evokes",
+    "develops",
+    "shapes"
+    ],
+
+    "objects": [
+    "emotion",
+    "energy",
+    "depth",
+    "momentum",
+    "tension",
+    "contrast",
+    "excitement",
+    "atmosphere"
+    ],
+
+    "qualities": [
+    "clarity",
+    "intensity",
+    "warmth",
+    "balance",
+    "originality",
+    "precision",
+    "richness",
+    "character"
+    ]
+}

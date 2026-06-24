@@ -1,0 +1,91 @@
+{
+  "single": "Single",
+  "genres": [
+    "Pop",
+    "Rock",
+    "Hip-Hop",
+    "Électronique",
+    "Indie",
+    "Jazz",
+    "Classique"
+  ],
+  "titlePattern": "{{adjective}} {{noun}}",
+  "reviewPatterns": [
+    "Une {{adjective}} {{noun}} qui {{reaction}}.",
+    "Construit sur une base {{adjective}} de {{noun}}, le morceau {{reaction}}.",
+    "Le morceau explore une atmosphère {{adjective}} où {{noun}} domine.",
+    "Une interprétation {{adjective}} de {{noun}} dans le {{genre}}.",
+    "Avec un sens {{adjective}} de {{noun}}, {{reaction}}.",
+    "Une pièce étonnamment {{adjective}} de composition basée sur {{noun}}."
+  ],
+    "adjectives": [
+      "vibrant",
+      "mélancolique",
+      "électrique",
+      "rêveur",
+      "brut",
+      "cinématique",
+      "minimal",
+      "expérimental",
+      "élevé",
+      "sombre",
+      "nostalgique",
+      "hypnotique"
+    ],
+    "nouns": [
+      "mélodie",
+      "rythme",
+      "harmonie",
+      "écho",
+      "pulsation",
+      "vague",
+      "tempête",
+      "feu",
+      "ombre",
+      "ciel",
+      "rêve",
+      "signal"
+    ],
+    
+    "reactionPatterns": [
+    "{{verb}} {{object}} avec {{quality}}",
+    "{{verb}} un sentiment de {{quality}}",
+    "{{verb}} l'auditeur grâce à {{object}}",
+    "{{verb}} une expérience {{quality}}",
+    "{{verb}} une forte {{object}} musicale",
+    "{{verb}} une atmosphère de {{quality}}"
+    ],
+
+    "verbs": [
+    "crée",
+    "offre",
+    "développe",
+    "maintient",
+    "capture",
+    "évoque",
+    "construit",
+    "façonne"
+    ],
+
+    "objects": [
+    "émotion",
+    "énergie",
+    "profondeur",
+    "dynamique",
+    "tension",
+    "contraste",
+    "enthousiasme",
+    "atmosphère"
+    ],
+
+    "qualities": [
+    "clarté",
+    "intensité",
+    "chaleur",
+    "équilibre",
+    "originalité",
+    "précision",
+    "richesse",
+    "caractère"
+    ]
+  }

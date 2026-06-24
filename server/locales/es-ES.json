@@ -1,0 +1,91 @@
+{
+  "single": "Sencillo",
+  "genres": [
+    "Pop",
+    "Rock",
+    "Hip-Hop",
+    "Electrónica",
+    "Indie",
+    "Jazz",
+    "Clásica"
+  ],
+  "titlePattern": "{{adjective}} {{noun}}",
+  "reviewPatterns": [
+    "Una {{adjective}} {{noun}} que {{reaction}}.",
+    "Construida sobre una base {{adjective}} de {{noun}}, la canción {{reaction}}.",
+    "La canción explora una atmósfera {{adjective}} donde domina {{noun}}.",
+    "Una interpretación {{adjective}} de {{noun}} dentro del {{genre}}.",
+    "Con un sentido {{adjective}} de {{noun}}, {{reaction}}.",
+    "Una pieza inesperadamente {{adjective}} de composición basada en {{noun}}."
+  ],
+    "adjectives": [
+      "vibrante",
+      "melancólico",
+      "eléctrico",
+      "soñador",
+      "crudo",
+      "cinemático",
+      "minimal",
+      "experimental",
+      "elevado",
+      "oscuro",
+      "nostálgico",
+      "hipnótico"
+    ],
+    "nouns": [
+      "melodía",
+      "ritmo",
+      "armonía",
+      "eco",
+      "pulso",
+      "ola",
+      "tormenta",
+      "fuego",
+      "sombra",
+      "cielo",
+      "sueño",
+      "señal"
+    ],
+    
+    "reactionPatterns": [
+    "{{verb}} {{object}} con {{quality}}",
+    "{{verb}} una sensación de {{quality}}",
+    "{{verb}} al oyente mediante {{object}}",
+    "{{verb}} una experiencia {{quality}}",
+    "{{verb}} una fuerte {{object}} musical",
+    "{{verb}} una atmósfera de {{quality}}"
+    ],
+
+    "verbs": [
+    "crea",
+    "ofrece",
+    "desarrolla",
+    "mantiene",
+    "captura",
+    "evoca",
+    "construye",
+    "forma"
+    ],
+
+    "objects": [
+    "emoción",
+    "energía",
+    "profundidad",
+    "dinamismo",
+    "tensión",
+    "contraste",
+    "entusiasmo",
+    "atmósfera"
+    ],
+
+    "qualities": [
+    "claridad",
+    "intensidad",
+    "calidez",
+    "equilibrio",
+    "originalidad",
+    "precisión",
+    "riqueza",
+    "carácter"
+    ]
+  }
