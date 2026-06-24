@@ -151,20 +151,18 @@ function safe(arr, fallback = []) {
 
 function generateReview(rng, genre, localeData) {
     const actions = {
-        adjective: () => rand(rng, localeData.adjectives, "interesting"),
-        noun: () => rand(rng, localeData.nouns, "sound"),
+        adjective: () => rand(rng, localeData.adjectives),
+        noun: () => rand(rng, localeData.nouns),
         reaction: () => generateReaction(rng, localeData),
-        genre: () => genre.toLowerCase()
+        genre: () => genre
     };
 
-    const patterns = [
-        "A {{ adjective }} {{ noun }} that {{ reaction }}.",
-        "Built on a {{ adjective }} foundation of {{ noun }}, the track {{ reaction }}.",
-        "The song explores a {{ adjective }} atmosphere where {{ noun }} dominates.",
-        "A {{ adjective }} interpretation of {{ noun }} within {{ genre }} music.",
-        "With a {{ adjective }} sense of {{ noun }}, it {{ reaction }}.",
-        "An unexpectedly {{ adjective }} piece of {{ noun }}-driven composition."
-    ];
+    const patterns = safe(
+        localeData.reviewPatterns,
+        [
+            "{{adjective}} {{noun}} {{reaction}}"
+        ]
+    );
 
     const pattern = rand(rng, patterns);
 
