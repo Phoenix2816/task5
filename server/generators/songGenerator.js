@@ -29,16 +29,18 @@ function makeMelody(rng) {
     const motif = makeMotif(rng, scale, 4);
     const melody = [];
 
-    for (let bar = 0; bar < 4; bar++) {
-        const phrase = [];
+    const sections = ["A", "A_var", "B", "A"];
 
+    for (const section of sections) {
         for (let i = 0; i < 4; i++) {
-            let noteIndex;
+            let noteIndex = motif[i];
 
-            if (bar === 0 || bar === 2) {
-                noteIndex = motif[i];
-            } else {
-                noteIndex = motif[i] + (rng() > 0.5 ? 1 : -1);
+            if (section === "A_var") {
+                noteIndex += rng() > 0.5 ? 1 : -1;
+            }
+
+            if (section === "B") {
+                noteIndex += 2;
             }
 
             noteIndex = (noteIndex + scale.length) % scale.length;
@@ -47,10 +49,8 @@ function makeMelody(rng) {
                 scale[noteIndex] +
                 oct[Math.floor(rng() * oct.length)];
 
-            phrase.push(note);
+            melody.push(note);
         }
-
-        melody.push(...phrase);
     }
 
     return melody;
@@ -58,14 +58,22 @@ function makeMelody(rng) {
 
 function makeBass(rng) {
     const roots = ["C2", "Eb2", "F2", "G2"];
-    const bass = [];
-    let current = rand(rng, roots);
+    const bass = new Array(16).fill(null);
+
+    let root = rand(rng, roots);
+
+    const pattern = rng() > 0.5
+        ? [0, 3, 8, 11, 14]
+        : [0, 2, 4, 8, 10, 12];
 
     for (let i = 0; i < 16; i++) {
-        if (i % (rng() > 0.5 ? 4 : 8) === 0) {
-            current = rand(rng, roots);
+        if (i % (rng() > 0.5 ? 8 : 4) === 0) {
+            root = rand(rng, roots);
         }
-        bass.push(rng() > 0.3 ? current : null);
+
+        if (pattern.includes(i)) {
+            bass[i] = root;
+        }
     }
 
     return bass;
@@ -79,31 +87,35 @@ function makeDrums(rng, genre = "default") {
 
     const isTrap = genre === "trap" || genre === "hiphop";
 
-    const swing = rng() > 0.5 ? 1 : 0;
+    const groove = rng() > 0.5 ? "grooveA" : "grooveB";
 
-    const kickPattern = [0, 8, rng() > 0.5 ? 6 : null, rng() > 0.7 ? 10 : null];
-    const snarePattern = [4, 12];
+    const kickPatterns = {
+        grooveA: [0, 7, 8, 14],
+        grooveB: [0, 8, 10]
+    };
 
-    kickPattern.forEach(i => {
-        if (i !== null) kick[i] = true;
-    });
+    const snarePatterns = {
+        grooveA: [4, 12],
+        grooveB: [4, 11]
+    };
 
-    snarePattern.forEach(i => snare[i] = true);
+    kickPatterns[groove].forEach(i => kick[i] = true);
+    snarePatterns[groove].forEach(i => snare[i] = true);
 
     for (let i = 0; i < 16; i++) {
         if (isTrap) {
-            hat[i] = rng() > 0.35;
+            hat[i] = rng() > 0.25;
         } else {
-            hat[i] = i % 2 === 0 && rng() > 0.2;
+            hat[i] = i % 2 === 0 || rng() > 0.7;
         }
     }
 
     for (let i = 0; i < 16; i++) {
-        let v = 0.6 + rng() * 0.4;
+        let v = 0.6 + rng() * 0.35;
 
-        if (kick[i]) v = 0.95;
-        if (snare[i]) v = 1.0;
-        if (hat[i]) v *= (i % 4 === 0 ? 1.1 : 0.9);
+        if (kick[i]) v = 1;
+        if (snare[i]) v = 0.95;
+        if (hat[i]) v *= (i % 4 === 0 ? 1.1 : 0.85);
 
         velocity[i] = Math.min(1, v);
     }
