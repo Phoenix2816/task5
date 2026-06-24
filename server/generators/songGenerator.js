@@ -72,51 +72,43 @@ function makeBass(rng) {
 }
 
 function makeDrums(rng, genre = "default") {
-  const kick = Array(16).fill(false);
-  const snare = Array(16).fill(false);
-  const hat = Array(16).fill(false);
-  const velocity = Array(16).fill(0.7);
+    const kick = Array(16).fill(false);
+    const snare = Array(16).fill(false);
+    const hat = Array(16).fill(false);
+    const velocity = Array(16).fill(0.7);
 
-  const isTrap = genre === "trap" || genre === "hiphop";
+    const isTrap = genre === "trap" || genre === "hiphop";
 
-  kick[0] = true;
-  kick[8] = true;
-  snare[4] = true;
-  snare[12] = true;
+    const swing = rng() > 0.5 ? 1 : 0;
 
-  if (isTrap) {
-    const base = [0, 4, 8, 12];
-    for (const i of base) hat[i] = true;
+    const kickPattern = [0, 8, rng() > 0.5 ? 6 : null, rng() > 0.7 ? 10 : null];
+    const snarePattern = [4, 12];
+
+    kickPattern.forEach(i => {
+        if (i !== null) kick[i] = true;
+    });
+
+    snarePattern.forEach(i => snare[i] = true);
 
     for (let i = 0; i < 16; i++) {
-        const isOffBeat = i % 2 === 1;
-
-        if (isOffBeat && rng() > 0.15) {
-            hat[i] = true;
+        if (isTrap) {
+            hat[i] = rng() > 0.35;
+        } else {
+            hat[i] = i % 2 === 0 && rng() > 0.2;
         }
     }
 
     for (let i = 0; i < 16; i++) {
-      if (hat[i] && i !== 0 && i !== 8 && rng() < 0.1) {
-        hat[i] = false;
-      }
+        let v = 0.6 + rng() * 0.4;
+
+        if (kick[i]) v = 0.95;
+        if (snare[i]) v = 1.0;
+        if (hat[i]) v *= (i % 4 === 0 ? 1.1 : 0.9);
+
+        velocity[i] = Math.min(1, v);
     }
-  } else {
-    for (let i = 0; i < 16; i += 2) hat[i] = true;
-  }
 
-  if (rng() > 0.75) kick[6] = true;
-  if (rng() > 0.8) snare[14] = true;
-
-  for (let i = 0; i < 16; i++) {
-    if (hat[i]) {
-      velocity[i] = i % 4 === 0 ? 0.85 : 0.55;
-    }
-    if (kick[i]) velocity[i] = 0.95;
-    if (snare[i]) velocity[i] = 1.0;
-  }
-
-  return { kick, snare, hat, velocity };
+    return { kick, snare, hat, velocity };
 }
 function safe(arr, fallback = []) {
     return Array.isArray(arr) ? arr : fallback;
