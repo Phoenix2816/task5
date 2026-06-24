@@ -8,6 +8,22 @@ import GalleryView from "./components/GalleryView";
 
 import { fetchSongs } from "./services/api";
 
+const MIN_SEED = -(1n << 63n);
+const MAX_SEED = (1n << 63n) - 1n;
+
+function isValidSeed(value) {
+    try {
+        const n = BigInt(value);
+
+        return (
+            n >= MIN_SEED &&
+            n <= MAX_SEED
+        );
+    } catch {
+        return false;
+    }
+}
+
 export default function App() {
     const [region, setRegion] = useState("en-US");
     const [seed, setSeed] = useState("12345");
@@ -25,22 +41,6 @@ export default function App() {
 
     const localeData = getLocale(region);
     const loadingMoreRef = useRef(false);
-    const MIN_SEED = -(1n << 63n);
-    const MAX_SEED = (1n << 63n) - 1n;
-
-    function isValidSeed(value) {
-        try {
-            const n = BigInt(value);
-
-            return (
-                n >= MIN_SEED &&
-                n <= MAX_SEED
-            );
-        } catch {
-            return false;
-        }
-    }
-
     useEffect(() => {
         if (!isValidSeed(seed)) {
             console.log("Seed must be a signed 64-bit integer");
