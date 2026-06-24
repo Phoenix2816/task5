@@ -15,7 +15,11 @@ const locales = {
     "es-ES": require("../locales/es-ES.json")
 };
 
-function rand(rng, arr) {
+function rand(rng, arr, fallback = "") {
+    if (!Array.isArray(arr) || arr.length === 0) {
+        return fallback;
+    }
+
     return arr[Math.floor(rng() * arr.length)];
 }
 
@@ -144,33 +148,12 @@ function safe(arr, fallback = []) {
     return Array.isArray(arr) ? arr : fallback;
 }
 
-function configureSentencer(rng, localeData, genre) {
-    Sentencer.configure({
-        actions: {
-            adjective: function () {
-                return rand(rng, localeData.adjectives);
-            },
-
-            noun: function () {
-                return rand(rng, localeData.nouns);
-            },
-
-            reaction: function () {
-                return rand(rng, localeData.reviews);
-            },
-
-            genre: function () {
-                return genre.toLowerCase();
-            }
-        }
-    });
-}
 
 function generateReview(rng, genre, localeData) {
     const actions = {
-        adjective: () => rand(rng, localeData.adjectives),
-        noun: () => rand(rng, localeData.nouns),
-        reaction: () => rand(rng, localeData.reviews),
+        adjective: () => rand(rng, localeData.adjectives, "interesting"),
+        noun: () => rand(rng, localeData.nouns, "sound"),
+        reaction: () => generateReaction(rng, localeData),
         genre: () => genre.toLowerCase()
     };
 
@@ -191,19 +174,33 @@ function generateReview(rng, genre, localeData) {
 
     return SentencerLocal.make(pattern);
 }
-function generateReaction(rng, localeData) {
-    const pattern = rand(
-        rng,
-        localeData.reactionPatterns || ["{{verb}} {{object}}"]
+function generateReaction(rng, localeData = {}) {
+    const patterns = safe(
+        localeData.reactionPatterns,
+        ["{{verb}} {{object}}"]
     );
 
+    const verbs = safe(
+        localeData.verbs,
+        ["creates"]
+    );
+
+    const objects = safe(
+        localeData.objects,
+        ["impact"]
+    );
+
+    const qualities = safe(
+        localeData.qualities,
+        ["depth"]
+    );
+
+    const pattern = rand(rng, patterns);
+
     return pattern
-        .replace(/{{verb}}/g,
-            rand(rng, localeData.verbs || ["creates"]))
-        .replace(/{{object}}/g,
-            rand(rng, localeData.objects || ["an impact"]))
-        .replace(/{{quality}}/g,
-            rand(rng, localeData.qualities || ["great depth"]));
+        .replace(/{{verb}}/g, rand(rng, verbs))
+        .replace(/{{object}}/g, rand(rng, objects))
+        .replace(/{{quality}}/g, rand(rng, qualities));
 }
 
 function generateSong(index, rng, region, seed, page) {
@@ -218,6 +215,10 @@ function generateSong(index, rng, region, seed, page) {
     const songRng = seedrandom(`${seed}_${page}_${index}`);
 
     const localeData = locales[region] || locales["en-US"];
+    localeData.adjectives = safe(localeData.adjectives, ["Cool"]);
+    localeData.nouns = safe(localeData.nouns, ["Sound"]);
+    localeData.genres = safe(localeData.genres, ["Pop"]);
+    localeData.reviews = safe(localeData.reviews, ["stands out"]);
 
     const adjectives = safe(localeData.adjectives, ["Cool"]);
     const nouns = safe(localeData.nouns, ["Sound"]);
