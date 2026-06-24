@@ -1,6 +1,5 @@
 /* global BigInt */
 const { fakerEN_US, fakerDE } = require("@faker-js/faker");
-const Sentencer = require("sentencer");
 const seedrandom = require("seedrandom");
 
 function getFaker(region) {
@@ -150,27 +149,22 @@ function safe(arr, fallback = []) {
 
 
 function generateReview(rng, genre, localeData) {
-    const actions = {
-        adjective: () => rand(rng, localeData.adjectives),
-        noun: () => rand(rng, localeData.nouns),
-        reaction: () => generateReaction(rng, localeData),
-        genre: () => genre
-    };
-
-    const patterns = safe(
-        localeData.reviewPatterns,
-        [
+    const pattern = rand(
+        rng,
+        safe(localeData.reviewPatterns, [
             "{{adjective}} {{noun}} {{reaction}}"
-        ]
+        ])
     );
 
-    const pattern = rand(rng, patterns);
-
-    const SentencerLocal = require("sentencer");
-
-    SentencerLocal.configure({ actions });
-
-    return SentencerLocal.make(pattern);
+    return pattern
+        .replace(/{{adjective}}/g,
+            rand(rng, localeData.adjectives))
+        .replace(/{{noun}}/g,
+            rand(rng, localeData.nouns))
+        .replace(/{{reaction}}/g,
+            generateReaction(rng, localeData))
+        .replace(/{{genre}}/g,
+            genre);
 }
 function generateReaction(rng, localeData = {}) {
     const patterns = safe(
